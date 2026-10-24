@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="E-Commerce Cross-browser Suite" parallel="tests" thread-count="3">
+    <listeners>
+        <listener class-name="com.automation.listeners.TestListener"/>
+    </listeners>
+    <test name="Chrome SauceDemo order validation">
+        <parameter name="browser" value="chrome"/>
+        <classes><class name="com.automation.tests.ECommerceOrderValidationTest"/></classes>
+    </test>
+    <test name="Edge SauceDemo order validation">
+        <parameter name="browser" value="edge"/>
+        <classes><class name="com.automation.tests.ECommerceOrderValidationTest"/></classes>
+    </test>
+    <test name="Firefox SauceDemo order validation">
+        <parameter name="browser" value="firefox"/>
+        <classes><class name="com.automation.tests.ECommerceOrderValidationTest"/></classes>
+    </test>
+</suite>

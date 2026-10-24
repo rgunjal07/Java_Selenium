@@ -1,0 +1,32 @@
+name: Selenium UI tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+      - name: Run headless Chrome tests
+        run: mvn --batch-mode clean verify -Dheadless=true allure:report
+      - name: Upload reports and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-results
+          path: |
+            reports/
+            logs/
+            target/surefire-reports/
+            target/site/
+            target/allure-results/
